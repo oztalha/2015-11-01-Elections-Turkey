@@ -44,7 +44,7 @@
 
       queue()
           .defer(d3.json, 'HDP_share_nov.json')
-          .defer(d3.json, 'tr_jun.geojson')
+          .defer(d3.json, 'tr_nov.geojson')
           .await(makeMap)
 
       function makeMap(error, data_1,gjson_1) {
@@ -145,7 +145,7 @@
     g.call(xAxis).append("text")
         .attr("class", "caption")
         .attr("y", 21)
-        .text('HDP Vote Shares (%), Jun 7, 2015 Turkish General Elections');
+        .text('HDP Vote Shares (%), Nov 1, 2015 Turkish General Elections');
           
 
       };
