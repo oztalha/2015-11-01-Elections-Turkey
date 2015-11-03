@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <head>
    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
-   <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-   <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-   <script src="//cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
 
    
    
@@ -47,6 +47,13 @@
           .defer(d3.json, 'tr_jun.geojson')
           .await(makeMap)
 
+      function onEachFeature(feature, layer) {
+          // does this feature have a property named popupContent?
+          if (feature.properties && feature.properties.popupContent) {
+              layer.bindPopup(feature.properties.popupContent);
+              }
+          };
+
       function makeMap(error, data_1,gjson_1) {
 
           
@@ -70,21 +77,11 @@
 
           var map = L.map('map').setView([39.5, 35], 6);
 
-          L.tileLayer('http://{s}.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png', {
+          L.tileLayer('https://{s}.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png', {
               maxZoom: 18,
               minZoom: 1,
               attribution: 'Map tiles by <a href="http://www.mapbox.com/m">Mapbox</a> Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
           }).addTo(map);
-
-          
-
-          
-
-          
-
-          
-
-          
 
           
           function style_1(feature) {
@@ -99,7 +96,7 @@
           
 
           
-          gJson_layer_1 = L.geoJson(gjson_1, {style: style_1}).addTo(map)
+          gJson_layer_1 = L.geoJson(gjson_1, {style: style_1,onEachFeature: onEachFeature}).addTo(map)
           
 
           
@@ -148,6 +145,15 @@
         .text('AKP Vote Shares (%), Jun 7, 2015 Turkish General Elections');
           
 
+          
+
+          
+
+          
+
+          
+
+          
       };
 
    </script>
