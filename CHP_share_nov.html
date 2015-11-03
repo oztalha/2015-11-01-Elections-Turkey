@@ -43,7 +43,7 @@
    <script>
 
       queue()
-          .defer(d3.json, 'AKP_share_nov.json')
+          .defer(d3.json, 'CHP_share_nov.json')
           .defer(d3.json, 'tr_jun.geojson')
           .await(makeMap)
 
@@ -64,8 +64,8 @@
 
           
           var color = d3.scale.threshold()
-              .domain([15, 25, 35, 45, 55, 65])
-              .range(['#FFFFB2', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C', '#B10026']);
+              .domain([10, 15, 20, 25, 30, 35])
+              .range(['#F1EEF6', '#D4B9DA', '#C994C7', '#DF65B0', '#E7298A', '#CE1256', '#91003F']);
           
 
           var map = L.map('map').setView([39.5, 35], 6);
@@ -110,14 +110,14 @@
     legend.addTo(map);
 
     var x = d3.scale.linear()
-    .domain([0, 71])
+    .domain([0, 38])
     .range([0, 400]);
 
     var xAxis = d3.svg.axis()
         .scale(x)
         .orient("top")
         .tickSize(1)
-        .tickValues([15, 25, 35, 45, 55, 65]);
+        .tickValues([10, 15, 20, 25, 30, 35]);
 
     var svg = d3.select(".legend.leaflet-control").append("svg")
         .attr("id", 'legend')
@@ -145,7 +145,7 @@
     g.call(xAxis).append("text")
         .attr("class", "caption")
         .attr("y", 21)
-        .text('AKP Vote Shares (%), Jun 7, 2015 Turkish General Elections');
+        .text('CHP Vote Shares (%), Jun 7, 2015 Turkish General Elections');
           
 
       };
