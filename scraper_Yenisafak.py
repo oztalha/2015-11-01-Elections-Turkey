@@ -3,6 +3,18 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from unidecode import unidecode
 
+
+#zaman scraper
+
+
+
+
+
+
+
+
+
+
 def scrape_towns():
 	cities = pd.read_csv('data/city_meta.csv',usecols=['il']).il #Cities w/ Turkish characters
 	n = pd.DataFrame(columns=('city','town', 'AKP', 'CHP','MHP','HDP','others'))
